@@ -24,7 +24,7 @@ For example, sFRAX has the address of:
 ## Technical introduction
 When an Ethereum account deploys a contract it may appear that the contract deployed has a randomly-generated address.  However, this address is *deterministic* based on the address of the creator (`sender`) and how many transactions the creator has sent (`nonce`) ([forum link](https://ethereum.stackexchange.com/questions/760/how-is-the-address-of-an-ethereum-contract-computed/761#761))
 
-What's great about this functionality is it applies to all EVM-based chains.  So, if use a fresh address `A` with its' first submitted transaction as a contract deployment, that contract will have the same address on Ethereum as it will on Fraxtal, Base, Mode, etc.
+What's great about this functionality is it applies to all EVM-based chains.  So, if you use a fresh address `A` with its' first submitted transaction as a contract deployment, that contract will have the same address on Ethereum as it will on Fraxtal, Base, Mode, etc. It doesn't matter if the contract is a staking contract on Fraxtal, a NFT on Base, or a DEX on Mode: the address is the same, regardless of its' code.
 
 ### Fun Fact
 Frax-LZ "Legacy" tokens were all deployed with by an account owned by LayerZero.  Frax-LZ "Upgradeable" are always deployed with an account owned by Frax, guaranteeing:
@@ -39,6 +39,8 @@ All our deployer needed to do was deploy a recovery contract at the right `nonce
 So, we
 - Deployed the recovery contract 10 times, filling up the needed address with contract code
 - Called `recover()` on the contract, sending the rescued tokens to the user.
+
+[Link to deployer](https://basescan.org/address/0x9c9dd956b413cdbd81690c9394a6b4d22afe6745)
 
 ## Lessons Learned
 Frax has some exciting things in store to (a) secure Fraxtal as the hub of Frax token liquidity and (b) solidify the future of omnichain strategy.  As we set everything up behind the scenes, we left the LayerZero sFRAX on Fraxtal visible on Stargate, and users unknowingly bridged to Fraxtal only to realize their LayerZero-branded tokens were not the same as the Fraxtal-native tokens.
